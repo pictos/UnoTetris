@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "UnoTetris.Windows": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
