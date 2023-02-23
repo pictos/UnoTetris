@@ -28,13 +28,5 @@ public static class SillyDependencyService
 
 		return null;
 	}
-
-	class DependencyData
-	{
-		public object GlobalInstance { get; set; }
-
-		public Type ImplementorType { get; set; }
-	}
-
 }
 
