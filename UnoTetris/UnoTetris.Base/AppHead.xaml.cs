@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using UnoTetris.Services;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 
@@ -29,6 +30,9 @@ public sealed partial class AppHead : App
 	/// </summary>
 	private static void InitializeLogging()
 	{
+#if !__MOBILE__
+		DependencyService.RegisterSingleton<IInputService, InputService>(new InputService());
+#endif
 #if DEBUG
 		// Logging is disabled by default for release builds, as it incurs a significant
 		// initialization cost from Microsoft.Extensions.Logging setup. If startup performance

@@ -30,8 +30,8 @@
 			Margin="0,0,0,20">
 			<Canvas
 				x:Name="gameCanvas"
-				Width="250"
-				Height="500"
+				MinWidth="250"
+				MinHeight="500"
 				local:Clip.ToBounds="true"
 				Background="#101010"
 				Loaded="gameCanvas_Loaded" />
@@ -53,8 +53,7 @@
 			<Image
 				x:Name="holdImage"
 				Width="125"
-				Margin="20"
-				Source="Assets/Block-J.png" />
+				Margin="20" />
 		</StackPanel>
 
 		<StackPanel

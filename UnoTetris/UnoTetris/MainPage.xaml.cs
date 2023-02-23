@@ -2,10 +2,9 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Threading.Tasks;
-using static UnoTetrisOld.Platforms.Windows.WinAPI;
+using UnoTetris.Services;
 using Windows.System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -52,46 +51,12 @@ public sealed partial class MainPage : Page
 		this.InitializeComponent();
 		this.MinWidth = this.MinHeight = 600;
 		imageControls = SetupGameCanvas(gameState.GameGrid);
-	}
-#if WINDOWS
-	static int m_hHook = 0;
-	HookProc m_HookProcedure;
-	protected override void OnNavigatedTo(NavigationEventArgs e)
-	{
-		base.OnNavigatedTo(e);
-		m_HookProcedure = new HookProc(HookProcedure);
-		m_hHook = SetWindowsHookEx(WH_KEYBOARD, m_HookProcedure, (IntPtr)0, (int)GetCurrentThreadId());
 
 
-		void HookProcedure(int nCode, IntPtr wParam, IntPtr lParam)
-		{
-			if (nCode < 0) return;
-
-			bool shift = (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Down).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down));
-
-			OnKeyDown(GetVirtualKey());
-
-			static VirtualKey GetVirtualKey()
-			{
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Down).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Down;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Up).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Up;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Left).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Left;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Right).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Right;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Z).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Z;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.C).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.C;
-				if (Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Space).HasFlag(Windows.UI.Core.CoreVirtualKeyStates.Down))
-					return VirtualKey.Space;
-				return VirtualKey.None;
-			}
-		}
-	}
+#if !__MOBILE__
+		DependencyService.Get<IInputService>()!.ProcessKeyDown(this, OnKeyDown);
 #endif
+	}
 
 	Image[,] SetupGameCanvas(GameGrid gameGrid)
 	{

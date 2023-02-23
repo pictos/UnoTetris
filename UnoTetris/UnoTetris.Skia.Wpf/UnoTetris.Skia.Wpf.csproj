@@ -29,6 +29,9 @@
     <ApplicationDefinition Include="Wpf\App.xaml" XamlRuntime="Wpf" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\UnoTetris.Windows\InputService.cs" Link="InputService.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\UnoTetris\UnoTetris.csproj" />
   </ItemGroup>
   <Import Project="..\UnoTetris.Base\base.props" />
