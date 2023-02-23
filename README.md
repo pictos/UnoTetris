@@ -10,9 +10,9 @@ https://user-images.githubusercontent.com/20712372/221010527-552d323e-aa3a-4cad-
 
 ## Controls
 
-Arrow down: Speed up the block drop
-Arrow Left/Right: Moves the block
-Arrow up: Rotates the block ClockWise
-Z: Rotates the block CounterClockWise
-Space: Hard drop the block
-C: Hold the block
+- Arrow down: Speed up the block drop
+- Arrow Left/Right: Moves the block
+- Arrow up: Rotates the block ClockWise
+- Z: Rotates the block CounterClockWise
+- Space: Hard drop the block
+- C: Hold the block
