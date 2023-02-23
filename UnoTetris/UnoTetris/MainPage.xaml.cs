@@ -54,7 +54,7 @@ public sealed partial class MainPage : Page
 
 
 #if !__MOBILE__
-		DependencyService.Get<IInputService>()!.ProcessKeyDown(this, OnKeyDown);
+		SillyDependencyService.Get<IInputService>()!.ProcessKeyDown(this, OnKeyDown);
 #endif
 	}
 

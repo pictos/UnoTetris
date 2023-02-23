@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 
 namespace UnoTetris.Services;
-public static class DependencyService
+public static class SillyDependencyService
 {
 	static readonly ConcurrentDictionary<Type, object> dependencyImplementations = new();
 

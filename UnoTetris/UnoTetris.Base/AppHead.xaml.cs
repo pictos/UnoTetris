@@ -31,7 +31,7 @@ public sealed partial class AppHead : App
 	private static void InitializeLogging()
 	{
 #if !__MOBILE__
-		DependencyService.RegisterSingleton<IInputService, InputService>(new InputService());
+		SillyDependencyService.RegisterSingleton<IInputService, InputService>(new InputService());
 #endif
 #if DEBUG
 		// Logging is disabled by default for release builds, as it incurs a significant
